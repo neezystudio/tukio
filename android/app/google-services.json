@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "906095681308",
+    "firebase_url": "https://sherehe-85161.firebaseio.com",
+    "project_id": "sherehe-85161",
+    "storage_bucket": "sherehe-85161.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906095681308:android:0be765a63ef8459b8c24d9",
+        "android_client_info": {
+          "package_name": "neezystudio.tukio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906095681308-a6r3tdat0emejsat4ss8sa28ofmie785.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "neezystudio.tukio",
+            "certificate_hash": "1f254a5f050125d8655a5ecfc2dd65c02ddf42fa"
+          }
+        },
+        {
+          "client_id": "906095681308-p7ogm6crlcl6sjoik15ebg373fjs7o13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvkupXHsrKu7XNqmvfo2XiqZ8zwNcgjyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906095681308-p7ogm6crlcl6sjoik15ebg373fjs7o13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
