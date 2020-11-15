@@ -1,8 +1,8 @@
 import 'package:animated_splash/animated_splash.dart';
 import 'package:flutter/material.dart';
-import 'package:tukio/screens/authscreen.dart';
-import 'package:tukio/screens/homescreen.dart';
-import 'package:tukio/screens/splashscreen.dart';
+import 'package:tukio/pages/authscreen.dart';
+import 'package:tukio/pages/menu_dashboard_layout/menu_dashboard_layout.dart';
+import 'package:tukio/pages/splashscreen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -26,7 +26,5 @@ class MyApp extends StatelessWidget {
 
 var routes = <String, WidgetBuilder>{
   "/auth": (BuildContext context) => AuthScreen(),
-  "/home": (BuildContext context) => HomeScreen(
-        username: 'gy',
-      ),
+  "/home": (BuildContext context) => MenuDashboardLayout(),
 };

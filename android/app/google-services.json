@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "906095681308",
-    "firebase_url": "https://sherehe-85161.firebaseio.com",
-    "project_id": "sherehe-85161",
-    "storage_bucket": "sherehe-85161.appspot.com"
+    "project_number": "585186761734",
+    "firebase_url": "https://tukio-408c1.firebaseio.com",
+    "project_id": "tukio-408c1",
+    "storage_bucket": "tukio-408c1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:906095681308:android:0be765a63ef8459b8c24d9",
+        "mobilesdk_app_id": "1:585186761734:android:34e2f6b9d6949f3e3ff787",
         "android_client_info": {
           "package_name": "neezystudio.tukio"
         }
       },
       "oauth_client": [
         {
-          "client_id": "906095681308-a6r3tdat0emejsat4ss8sa28ofmie785.apps.googleusercontent.com",
+          "client_id": "585186761734-sgocepbh6aimjm609572mi59t7bul01c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "neezystudio.tukio",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "906095681308-p7ogm6crlcl6sjoik15ebg373fjs7o13.apps.googleusercontent.com",
+          "client_id": "585186761734-07ho16takbv6j7496llgjgoi1v6mlq1u.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvkupXHsrKu7XNqmvfo2XiqZ8zwNcgjyE"
+          "current_key": "AIzaSyBfdUmvginsJEfHvkrPPxOPV6ZZSgkZUWM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "906095681308-p7ogm6crlcl6sjoik15ebg373fjs7o13.apps.googleusercontent.com",
+              "client_id": "585186761734-07ho16takbv6j7496llgjgoi1v6mlq1u.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
