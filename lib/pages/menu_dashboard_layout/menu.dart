@@ -47,7 +47,7 @@ class Menu extends StatelessWidget {
                       Text("Dashboard",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 18,
                             fontWeight: selectedIndex == 0
                                 ? FontWeight.w900
                                 : FontWeight.normal,
@@ -72,7 +72,7 @@ class Menu extends StatelessWidget {
                       Text("Options",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 18,
                             fontWeight: selectedIndex == 1
                                 ? FontWeight.w900
                                 : FontWeight.normal,
@@ -97,7 +97,7 @@ class Menu extends StatelessWidget {
                       Text("Check In",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 18,
                             fontWeight: selectedIndex == 2
                                 ? FontWeight.w900
                                 : FontWeight.normal,
@@ -122,7 +122,7 @@ class Menu extends StatelessWidget {
                       Text("Check Out",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 18,
                             fontWeight: selectedIndex == 3
                                 ? FontWeight.w900
                                 : FontWeight.normal,
@@ -146,7 +146,7 @@ class Menu extends StatelessWidget {
                     Text("Settings",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: selectedIndex == 4
                               ? FontWeight.w900
                               : FontWeight.normal,
