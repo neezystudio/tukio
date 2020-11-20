@@ -35,7 +35,8 @@ class AddEventPageState extends State<AddEventPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("Add Event"),
+          title: new Text("Create New Event"),
+          backgroundColor: Colors.deepOrange,
         ),
         body: EditEventForm(submitForm, null));
   }

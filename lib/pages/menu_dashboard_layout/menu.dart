@@ -41,12 +41,12 @@ class Menu extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.dashboard_rounded,
-                        color: Colors.white,
+                        color: Colors.deepPurple[900],
                         size: 30.0,
                       ),
                       Text("Dashboard",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: selectedIndex == 0
                                 ? FontWeight.w900
@@ -66,12 +66,12 @@ class Menu extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.create_rounded,
-                        color: Colors.white,
+                        color: Colors.purple[600],
                         size: 30.0,
                       ),
                       Text("Options",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: selectedIndex == 1
                                 ? FontWeight.w900
@@ -91,12 +91,12 @@ class Menu extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.check_box_rounded,
-                        color: Colors.white,
+                        color: Colors.deepOrange,
                         size: 30.0,
                       ),
                       Text("Check In",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: selectedIndex == 2
                                 ? FontWeight.w900
@@ -116,12 +116,12 @@ class Menu extends StatelessWidget {
                     children: <Widget>[
                       Icon(
                         Icons.check_box_outline_blank_outlined,
-                        color: Colors.white,
+                        color: Colors.pink[700],
                         size: 30.0,
                       ),
                       Text("Check Out",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 18,
                             fontWeight: selectedIndex == 3
                                 ? FontWeight.w900
@@ -140,12 +140,12 @@ class Menu extends StatelessWidget {
                   child: Row(children: <Widget>[
                     Icon(
                       Icons.settings_outlined,
-                      color: Colors.white,
+                      color: Colors.pink[400],
                       size: 30.0,
                     ),
                     Text("Settings",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 18,
                           fontWeight: selectedIndex == 4
                               ? FontWeight.w900

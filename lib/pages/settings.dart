@@ -69,7 +69,6 @@ class _SettingsPageState extends State<SettingsPage> {
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
-import 'package:tukio/pages/authscreen.dart';
 
 class SettingsPage extends StatelessWidget with NavigationStates {
   final Function onMenuTap;

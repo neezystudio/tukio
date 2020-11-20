@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tukio/utils/colors.dart';
 
+// ignore: must_be_immutable
 class EventMainTabPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new EventMainTabPageState();

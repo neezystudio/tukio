@@ -43,14 +43,14 @@ class OptionsSliverAppBar extends StatelessWidget {
         ],
       ),
       flexibleSpace: FlexibleSpaceBar(
-        background: Image.network(
-          'https://himdeve.eu/wp-content/uploads/2015/05/himdeve_labrador_with_cute_woman_model.jpg',
+        background: Image.asset(
+          'assets/images/plan.jpg',
           fit: BoxFit.cover,
         ),
       ),
       bottom: TabBar(
-        labelColor: Colors.black,
-        indicatorColor: Colors.black,
+        labelColor: Colors.white,
+        indicatorColor: Colors.white,
         controller: _tabController,
         tabs: <Widget>[
           Tab(

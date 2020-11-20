@@ -10,7 +10,7 @@ import 'package:tukio/pages/settings.dart';
 
 import 'menu.dart';
 
-//final Color backgroundColor = Color(0xFF6A139A);
+final Color backgroundColor = Color(0xFFFFFFFF);
 
 class MenuDashboardLayout extends StatefulWidget {
   @override
@@ -70,8 +70,8 @@ class _MenuDashboardLayoutState extends State<MenuDashboardLayout>
     screenWidth = size.width;
 
     return Scaffold(
-      //backgroundColor: backgroundColor,
-      backgroundColor: Colors.white10,
+      backgroundColor: backgroundColor,
+      //backgroundColor: Colors.white10,
       body: BlocProvider<NavigationBloc>(
         create: (context) => NavigationBloc(onMenuTap),
         child: Stack(

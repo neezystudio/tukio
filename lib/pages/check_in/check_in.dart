@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
-import 'package:tukio/pages/screens/scan.dart';
 
 class CheckInPage extends StatelessWidget with NavigationStates {
   final Function onMenuTap;
@@ -31,23 +30,6 @@ class CheckInPage extends StatelessWidget with NavigationStates {
               Icon(Icons.settings, color: Colors.white),
             ],
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                RaisedButton.icon(
-                  color: Colors.red,
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ScanPage()));
-                  },
-                  icon: Icon(Icons.select_all),
-                  label: Text("Scan"),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

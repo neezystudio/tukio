@@ -109,22 +109,28 @@ class EditEventFormState extends State<EditEventForm> {
                   controller: _latitudeController,
                   decoration: new InputDecoration(
                     labelText: "Lattitude",
-                    //icon: new Icon(Icons.map),
+                    icon: new Icon(Icons.place),
                     border: new OutlineInputBorder(),
                   ),
-                  //validator: (val) => double.parse(val, (e) => null) == null ? "Invalid longitude. Should be number." : null,
-                  //onSaved: (val) => _latitude = double.parse(val, (e) => null),
+                  // ignore: deprecated_member_use
+                  validator: (val) => double.parse(val, (e) => null) == null
+                      ? "Invalid lattitude. Should be number."
+                      : null,
+                  // ignore: deprecated_member_use
+                  onSaved: (val) => _latitude = double.parse(val, (e) => null),
                 ),
               ),
               new TextFormField(
                 controller: _longitudeController,
                 decoration: new InputDecoration(
                   labelText: "Longitude",
-                  //icon: new Icon(Icons.map),
+                  icon: new Icon(Icons.place),
                   border: new OutlineInputBorder(),
                 ),
-                //validator: (val) => double.parse(val, (e) => null) == null ? "Invalid longitude. Should be number." : null,
-                //onSaved: (val) => _longitude = double.parse(val, (e) => null),
+                validator: (val) => double.parse(val) == null
+                    ? "Invalid longitude. Should be number."
+                    : null,
+                onSaved: (val) => _longitude = double.parse(val),
               ),
               new MaterialButton(
                 onPressed: () => submitForm(),
