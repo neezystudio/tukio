@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
 
 class Menu extends StatelessWidget {
@@ -31,6 +32,14 @@ class Menu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                ListTile(
+
+                    //GoogleUserCircleAvatar(
+                    // identity: firebaseUser.photoURL,
+                    //),
+                    // title: Text(userState.user.displayName ?? ''),
+                    // subtitle: Text(userState.user.email ?? ''),
+                    ),
                 GestureDetector(
                   onTap: () {
                     BlocProvider.of<NavigationBloc>(context)

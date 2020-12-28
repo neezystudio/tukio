@@ -48,7 +48,7 @@ class _AuthScreenState extends State<AuthScreen> {
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("assets/images/bg.png"),
+                    image: AssetImage("assets/images/get_started.jpg"),
                     fit: BoxFit.cover)),
           ),
           Column(

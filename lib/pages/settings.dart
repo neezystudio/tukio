@@ -68,7 +68,9 @@ class _SettingsPageState extends State<SettingsPage> {
 */
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:tukio/notifiers/dark_theme_provider.dart';
 
 class SettingsPage extends StatelessWidget with NavigationStates {
   final Function onMenuTap;
@@ -79,6 +81,7 @@ class SettingsPage extends StatelessWidget with NavigationStates {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -109,6 +112,11 @@ class SettingsPage extends StatelessWidget with NavigationStates {
                   centerTitle: true,
                 ),
               ),
+              Checkbox(
+                  value: themeChange.darkTheme,
+                  onChanged: (bool value) {
+                    themeChange.darkTheme = value;
+                  })
             ],
           ),
         ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:tukio/pages/check_in/check_in.dart';
 import 'package:tukio/pages/event_tabs/create.dart';
 import 'package:tukio/pages/event_tabs/portfolio_tutorials_sub_page.dart';
-import 'package:tukio/pages/event_tabs/share_event.dart';
+//import 'package:tukio/pages/event_tabs/share_event.dart';
 import 'package:tuple/tuple.dart';
 
 class OptionsPage extends StatefulWidget with NavigationStates {
@@ -20,7 +21,7 @@ class _OptionsPageState extends State<OptionsPage>
     with SingleTickerProviderStateMixin {
   final List<Tuple2> _pages = [
     Tuple2('NewEvent', CreatePage()),
-    Tuple2('ShareEvent', ShareEvent()),
+    Tuple2('ShareEvent', CheckInPage()),
   ];
 
   TabController _tabController;

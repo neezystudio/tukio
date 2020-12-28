@@ -3,24 +3,51 @@ import 'package:flutter/material.dart';
 import 'package:tukio/pages/authscreen.dart';
 import 'package:tukio/pages/menu_dashboard_layout/menu_dashboard_layout.dart';
 import 'package:tukio/pages/splashscreen.dart';
+import 'package:provider/provider.dart';
+import 'package:tukio/utils/ThemeData.dart';
+import 'package:tukio/utils/sharedpreferences.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
 
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = new DarkThemeProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentAppTheme();
+  }
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreference.getTheme();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Google SignIn Auth',
-      routes: routes,
+    return ChangeNotifierProvider(create: (_) {
+      return themeChangeProvider;
+    }, child: Consumer<DarkThemeProvider>(
+        builder: (BuildContext context, value, Widget child) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Google SignIn Auth',
+        theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+        routes: routes,
 // Showing SplashScreen as the first screen when user launches the app.
-      home: AnimatedSplash(
-        imagePath: 'assets/images/color-logo (1).png',
-        home: SplashScreen(),
-        duration: 2500,
-        type: AnimatedSplashType.StaticDuration,
-      ),
-    );
+        home: AnimatedSplash(
+          imagePath: 'assets/images/color-logo (1).png',
+          home: SplashScreen(),
+          duration: 2500,
+          type: AnimatedSplashType.StaticDuration,
+        ),
+      );
+    }));
   }
 }
 

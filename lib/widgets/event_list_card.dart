@@ -13,7 +13,8 @@ class EventCard extends StatefulWidget {
     //Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new EventPage(_documentID)));
   }
 
-  EventCard(this._name, this._description, this._documentID);
+  EventCard(this._name, this._description, this._documentID,
+      {Null Function() onTap});
 }
 
 class EventCardController extends State<EventCard> {

@@ -1,233 +1,305 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:transparent_image/transparent_image.dart';
+
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:tukio/pages/event_tabs/share_event.dart';
+import 'package:tukio/widgets/event_list_card.dart';
 
 class HomePage extends StatelessWidget with NavigationStates {
   final Function onMenuTap;
 
   const HomePage({Key key, this.onMenuTap}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  _top() {
     return Container(
+      padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(40)),
-        color: Colors.white,
-      ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        child: Container(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 48),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          color: Colors.purple[800],
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30.0),
+            bottomRight: Radius.circular(30.0),
+          )),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
-                children: [
+                children: <Widget>[
                   InkWell(
-                    child: Icon(Icons.menu, color: Colors.black),
-                    onTap: onMenuTap,
+                      child: Icon(Icons.menu, color: Colors.black),
+                      onTap: onMenuTap),
+                  SizedBox(
+                    width: 20.0,
                   ),
-                  Text("DashBoard",
-                      style: TextStyle(fontSize: 24, color: Colors.black)),
-                  Icon(Icons.settings, color: Colors.black),
+                  CircleAvatar(
+                    radius: 18.0,
+                    backgroundImage:
+                        AssetImage('assets/images/profileavatar.jpg'),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    'Hi! Welcome',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
                 ],
               ),
-              SizedBox(height: 50),
-              Container(
-                height: 200,
-                child: PageView(
-                  controller: PageController(viewportFraction: 0.8),
-                  scrollDirection: Axis.horizontal,
-                  pageSnapping: true,
-                  children: <Widget>[
-                    CustomScrollView(
-                      slivers: <Widget>[
-                        //custom scroll behaviour for appbar
-                        SliverAppBar(
-                          automaticallyImplyLeading: false,
-                          leading: InkWell(
-                            onTap: onMenuTap,
-                            child: Icon(Icons.menu, color: Colors.black),
-                          ),
-                          iconTheme: new IconThemeData(color: Colors.blue),
-                          floating: true,
-                          snap: true,
-                          //seethrough
-                          backgroundColor: Colors.transparent,
-
-                          //shadow
-                          elevation: 0.0,
-                          flexibleSpace: FlexibleSpaceBar(
-                            title: Text(
-                              "dashboard",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 26.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            centerTitle: true,
-                          ),
-                        ),
-                        FutureBuilder<QuerySnapshot>(
-                            future: FirebaseFirestore.instance
-                                .collection("service_type")
-                                .orderBy("pos")
-                                .get(),
-                            builder: (context, snapshot) {
-                              if (!snapshot.hasData)
-                                return SliverToBoxAdapter(
-                                  child: Container(
-                                    height: 200.0,
-                                    alignment: Alignment.center,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white),
-                                    ),
-                                  ),
-                                );
-                              else {
-                                return SliverStaggeredGrid.count(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 1.0,
-                                  mainAxisSpacing: 1.0,
-                                  staggeredTiles: snapshot.data.docs.map((doc) {
-                                    return StaggeredTile.count(
-                                        doc.data()["x"], doc.data()["y"]);
-                                  }).toList(),
-                                  children: snapshot.data.docs.map((doc) {
-                                    return Container(
-                                      height: 200.0,
-                                      child: Container(
-                                        margin: EdgeInsets.all(8.0),
-                                        child: Card(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 1),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(13),
-                                                side: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0)),
-                                            clipBehavior: Clip.antiAlias,
-                                            elevation: 5.0,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: InkWell(
-                                                  onTap: () {},
-                                                  child: Stack(
-                                                    children: <Widget>[
-                                                      Positioned(
-                                                        top: 0.0,
-                                                        left: 0.0,
-                                                        child: Container(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 6,
-                                                                  top: 10),
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: <Widget>[
-                                                              //The title
-                                                              Text(
-                                                                doc.data()[
-                                                                    "title"],
-                                                                style: TextStyle(
-                                                                    color: Color
-                                                                        .fromRGBO(
-                                                                            67,
-                                                                            73,
-                                                                            80,
-                                                                            1),
-                                                                    fontSize:
-                                                                        18.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              ),
-                                                              SizedBox(
-                                                                height: 5.0,
-                                                              ),
-//                Text(
-//                  "quantity"
-////                  doc.data["quantity"],
-//                  ,style: TextStyle(
-//                      color: Colors
-//                          .grey[500],
-//                      fontSize: 12.0,
-//                      fontWeight:
-//                          FontWeight
-//                              .bold),
-//                )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                        bottom: 0.0,
-                                                        left: 0.0,
-                                                        right: 0.0,
-                                                        child: Container(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    bottom: 8,
-                                                                    right: 8),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
-                                                              children: <
-                                                                  Widget>[
-                                                                FadeInImage
-                                                                    .memoryNetwork(
-                                                                  height: 70.0,
-                                                                  width: 70.0,
-                                                                  placeholder:
-                                                                      kTransparentImage,
-                                                                  alignment:
-                                                                      FractionalOffset
-                                                                          .bottomRight,
-                                                                  image: doc
-                                                                          .data()[
-                                                                      "imgLink"],
-                                                                  fit: BoxFit
-                                                                      .fill,
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  )),
-                                            )),
-                                      ),
-                                    );
-                                  }).toList(),
-                                );
-                              }
-                            })
-                      ],
-                    ),
-                  ],
+              IconButton(
+                icon: Icon(
+                  Icons.share_outlined,
+                  color: Colors.white,
                 ),
+                onPressed: () => ShareEvent(),
               ),
-              SizedBox(height: 20),
             ],
           ),
+          SizedBox(
+            height: 30.0,
+          ),
+          TextField(
+            decoration: InputDecoration(
+                hintText: "Search",
+                fillColor: Colors.white,
+                filled: true,
+                suffixIcon: Icon(Icons.filter_list),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(color: Colors.transparent),
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0)),
+          )
+        ],
+      ),
+    );
+  }
+
+  _gridItem(icon) {
+    return Column(
+      children: <Widget>[
+        CircleAvatar(
+          child: Icon(
+            icon,
+            size: 25.0,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.deepOrange.withOpacity(0.9),
         ),
+        SizedBox(height: 10.0),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          _top(),
+          SizedBox(
+            height: 20.0,
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "Category",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+                ),
+                Text(
+                  "View All",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          Container(
+            height: 200.0,
+            child: PageView(
+              controller: PageController(viewportFraction: 0.8),
+              scrollDirection: Axis.horizontal,
+              pageSnapping: true,
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/attendance.jpg"),
+                          fit: BoxFit.cover)),
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    "Attendance",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 20.0,
+                        height: 1.4,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/locations.jpg"),
+                          fit: BoxFit.cover)),
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    "Locations",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 20.0,
+                        height: 1.4,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(40)),
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/tasks.jpg"),
+                          fit: BoxFit.cover)),
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    "Tasks\nand\nReminders",
+                    style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 20.0,
+                        height: 1.4,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ShareEvent()));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/event.jpg"),
+                            fit: BoxFit.cover)),
+                    padding: EdgeInsets.only(top: 50.0),
+                    child: Text(
+                      "My\nEvents",
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 20.0,
+                          height: 1.4,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Row(
+              children: <Widget>[
+                Text("My Events",
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold))
+              ],
+            ),
+          ),
+          new StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('events')
+                .orderBy("start-time")
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) return new Text("Loading...");
+              return new ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: snapshot.data.docs.map((DocumentSnapshot document) {
+                  return new EventCard(
+                      document['name'], document['description'], document.id);
+                }).toList(),
+              );
+            },
+          ),
+
+          /*_cardItem(1),
+          _cardItem(2),
+          _cardItem(3),
+          _cardItem(4),*/
+        ],
+      ),
+    );
+
+    // ignore: dead_code
+  }
+
+  _cardItem(image) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 100.0,
+            height: 100.0,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/location.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(20)),
+          ),
+          SizedBox(height: 20.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Give Me my Mountain",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                "Karura Forest",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                "16 Entries",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
