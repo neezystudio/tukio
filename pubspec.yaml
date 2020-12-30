@@ -49,7 +49,7 @@ dependencies:
   firebase_messaging: ^7.0.3
   firebase_database: ^4.3.0
   firebase_core: ^0.5.2
-  image_picker: ^0.6.7+11
+  image_picker: ^0.6.7+17
   firebase_storage: ^4.0.1
   qr_flutter: ^3.2.0
   http: ^0.12.2

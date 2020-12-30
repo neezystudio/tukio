@@ -1,4 +1,8 @@
+//check your message chat
 import 'dart:async';
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../widgets/calendar_picker.dart';
@@ -15,6 +19,30 @@ class EditEventForm extends StatefulWidget {
 
 class EditEventFormState extends State<EditEventForm> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  // Image Picker
+  //List<File> _images = [];
+  File _image;
+  final picker = ImagePicker(); // Used only if you need a single picture
+
+  Future getImage(bool gallery) async {
+    //ImagePicker picker = ImagePicker();
+    final PickedFile pickedFile = gallery
+        ? await picker.getImage(
+            source: ImageSource.gallery,
+          )
+        : await picker.getImage(
+            source: ImageSource.camera,
+          );
+
+    setState(() {
+      if (pickedFile != null) {
+        // _images.add(File(pickedFile.path));
+        _image = File(pickedFile.path); // Use if you only need a single picture
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   num _latitude;
   num _longitude;
@@ -131,6 +159,26 @@ class EditEventFormState extends State<EditEventForm> {
                     ? "Invalid longitude. Should be number."
                     : null,
                 onSaved: (val) => _longitude = double.parse(val),
+              ),
+              RawMaterialButton(
+                fillColor: Theme.of(context).accentColor,
+                child: Icon(
+                  Icons.add_photo_alternate_rounded,
+                  color: Colors.white,
+                ),
+                elevation: 8,
+                onPressed: () {
+                  getImage(true);
+                },
+                padding: EdgeInsets.all(15),
+                shape: CircleBorder(),
+              ),
+              // Container(child: Image.file(File(_image))),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: _image == null
+                    ? Text("Image not loaded")
+                    : Image.file((_image)),
               ),
               new MaterialButton(
                 onPressed: () => submitForm(),
