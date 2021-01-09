@@ -74,11 +74,11 @@ class Menu extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.create_rounded,
+                        Icons.event,
                         color: Colors.purple[600],
                         size: 30.0,
                       ),
-                      Text("Options",
+                      Text("Events",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
@@ -99,11 +99,11 @@ class Menu extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.check_box_rounded,
+                        Icons.attribution_sharp,
                         color: Colors.deepOrange,
                         size: 30.0,
                       ),
-                      Text("Check In",
+                      Text("Attendance",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
@@ -124,11 +124,11 @@ class Menu extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.check_box_outline_blank_outlined,
+                        Icons.location_pin,
                         color: Colors.pink[700],
                         size: 30.0,
                       ),
-                      Text("Check Out",
+                      Text("Locations",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,

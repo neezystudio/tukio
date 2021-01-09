@@ -1,81 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:tukio/pages/event_tabs/share_event.dart';
+import 'package:tukio/pages/settings.dart';
 import 'package:tukio/widgets/event_list_card.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:tukio/widgets/locator.dart';
+import 'package:tukio/widgets/user_controller.dart';
+import 'package:tukio/widgets/user_model.dart';
 
-class HomePage extends StatelessWidget with NavigationStates {
+class HomePage extends StatefulWidget with NavigationStates {
+  static String route = "home";
   final Function onMenuTap;
+  final User user;
 
-  const HomePage({Key key, this.onMenuTap}) : super(key: key);
+  const HomePage({Key key, this.onMenuTap, this.user}) : super(key: key);
 
-  _top() {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-          color: Colors.purple[800],
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30.0),
-            bottomRight: Radius.circular(30.0),
-          )),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  InkWell(
-                      child: Icon(Icons.menu, color: Colors.black),
-                      onTap: onMenuTap),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  CircleAvatar(
-                    radius: 18.0,
-                    backgroundImage:
-                        AssetImage('assets/images/profileavatar.jpg'),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'Hi! Welcome',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.share_outlined,
-                  color: Colors.white,
-                ),
-                onPressed: () => ShareEvent(),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30.0,
-          ),
-          TextField(
-            decoration: InputDecoration(
-                hintText: "Search",
-                fillColor: Colors.white,
-                filled: true,
-                suffixIcon: Icon(Icons.filter_list),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide(color: Colors.transparent),
-                ),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0)),
-          )
-        ],
-      ),
-    );
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  UserModel _currentUser = locator.get<UserController>().currentUser;
+  _top(BuildContext context, String home) {
+    return;
   }
 
   _gridItem(icon) {
@@ -99,7 +50,75 @@ class HomePage extends StatelessWidget with NavigationStates {
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          _top(),
+          Container(
+            padding: EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30.0),
+                  bottomRight: Radius.circular(30.0),
+                )),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        InkWell(
+                            child: Icon(Icons.menu, color: Colors.black),
+                            onTap: widget.onMenuTap),
+                        Image.asset("assets/images/tukio_splash.png",
+                            scale: 15),
+                        /* CircleAvatar(
+                    radius: 18.0,
+                    child: Image(image: NetworkImage(user.photoUrl.toString())),
+                  ),*/
+
+                        SizedBox(
+                          width: 200.0,
+                        ),
+                        Text(
+                          "Hi ${_currentUser.displayName ?? 'nice to see you here.'}!\nWelcome  ",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                    IconButton(
+                        icon: Icon(FontAwesome5.user),
+                        onPressed: () {
+                          //Navigator.pushNamed(context, "/settings");
+                          //Navigator.of(context).pushNamed('/settings');
+                          Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                              builder: (context) => ProfileView(),
+                            ),
+                          );
+                        }),
+                  ],
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                      hintText: "Search",
+                      fillColor: Colors.white,
+                      filled: true,
+                      suffixIcon: Icon(Icons.filter_list),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                        borderSide: BorderSide(color: Colors.transparent),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 16.0)),
+                )
+              ],
+            ),
+          ),
           SizedBox(
             height: 20.0,
           ),
@@ -110,8 +129,11 @@ class HomePage extends StatelessWidget with NavigationStates {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Category",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
+                  "Categories",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                      fontStyle: FontStyle.italic),
                 ),
                 Text(
                   "View All",
@@ -220,8 +242,10 @@ class HomePage extends StatelessWidget with NavigationStates {
             child: Row(
               children: <Widget>[
                 Text("My Events",
-                    style:
-                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold))
+                    style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic))
               ],
             ),
           ),

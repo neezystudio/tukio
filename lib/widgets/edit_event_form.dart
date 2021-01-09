@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,17 @@ class EditEventFormState extends State<EditEventForm> {
         print('No image selected.');
       }
     });
+  }
+
+  Future uploadImageToFirebase(BuildContext context) async {
+    String fileName = _image.path;
+    StorageReference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('uploads/$fileName');
+    StorageUploadTask uploadTask = firebaseStorageRef.putFile(_image);
+    StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+    taskSnapshot.ref.getDownloadURL().then(
+          (value) => print("Done: $value"),
+        );
   }
 
   num _latitude;
@@ -181,7 +193,7 @@ class EditEventFormState extends State<EditEventForm> {
                     : Image.file((_image)),
               ),
               new MaterialButton(
-                onPressed: () => submitForm(),
+                onPressed: () => [submitForm(), uploadImageToFirebase(context)],
                 child: new Text("Submit"),
               )
             ],

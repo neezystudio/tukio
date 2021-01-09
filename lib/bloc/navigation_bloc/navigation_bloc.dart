@@ -48,9 +48,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
         );
         break;
       case NavigationEvents.SettingsClickedEvent:
-        yield SettingsPage(
-          onMenuTap: onMenuTap,
-        );
+        yield ProfileView(
+            //onMenuTap: onMenuTap,
+            );
     }
   }
 }

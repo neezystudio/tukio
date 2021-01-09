@@ -113,7 +113,7 @@ class _MenuDashboardLayoutState extends State<MenuDashboardLayout>
       return 2;
     } else if (navigationState is CheckOutPage) {
       return 3;
-    } else if (navigationState is SettingsPage) {
+    } else if (navigationState is ProfileView) {
       return 4;
     } else {
       return 0;
