@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     package="neezystudio.tukio">
    <application
-        android:label="tukio"
-        android:icon="@mipmap/launcher_icon">
+     android:label="tukio"
+     android:icon="@mipmap/launcher_icon">
+     <meta-data android:name="com.google.android.geo.API_KEY" 
+     android:value="{{AIzaSyBYlx-jwVmGxM5ri5EMYkmO2DAwT6kOPV0}}"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -38,4 +43,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>

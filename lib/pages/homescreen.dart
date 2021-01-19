@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:tukio/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:tukio/pages/event_tabs/share_event.dart';
@@ -11,6 +11,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:tukio/widgets/locator.dart';
 import 'package:tukio/widgets/user_controller.dart';
 import 'package:tukio/widgets/user_model.dart';
+
+import 'maps/places_search_map.dart';
 
 class HomePage extends StatefulWidget with NavigationStates {
   static String route = "home";
@@ -25,6 +27,15 @@ class HomePage extends StatefulWidget with NavigationStates {
 
 class _HomePageState extends State<HomePage> {
   UserModel _currentUser = locator.get<UserController>().currentUser;
+  static String keyword = "Bakery";
+
+  void updateKeyWord(String newKeyword) {
+    print(newKeyword);
+    setState(() {
+      keyword = newKeyword;
+    });
+  }
+
   _top(BuildContext context, String home) {
     return;
   }
@@ -78,12 +89,12 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           width: 200.0,
                         ),
-                        Text(
+                        /* Text(
                           "Hi ${_currentUser.displayName ?? 'nice to see you here.'}!\nWelcome  ",
                           style: TextStyle(
                             color: Colors.black,
                           ),
-                        )
+                        ) */
                       ],
                     ),
                     IconButton(
@@ -171,23 +182,32 @@ class _HomePageState extends State<HomePage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  width: 100,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/locations.jpg"),
-                          fit: BoxFit.cover)),
-                  padding: EdgeInsets.only(top: 50.0),
-                  child: Text(
-                    "Locations",
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
-                        fontSize: 20.0,
-                        height: 1.4,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PlacesSearchMapSample(keyword)));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8),
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(40)),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/locations.jpg"),
+                            fit: BoxFit.cover)),
+                    padding: EdgeInsets.only(top: 50.0),
+                    child: Text(
+                      "Locations",
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 20.0,
+                          height: 1.4,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 Container(
