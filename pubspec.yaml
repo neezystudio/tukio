@@ -59,6 +59,8 @@ dependencies:
   get_it: ^4.0.1
   flutter_fab_dialer: "^0.0.5"
   google_maps_flutter: ^1.1.0
+  geolocator: ^6.1.14
+  flutter_polyline_points: ^0.2.1
 
 dev_dependencies:
   flutter_test:

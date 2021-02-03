@@ -12,7 +12,7 @@ import 'package:tukio/widgets/locator.dart';
 import 'package:tukio/widgets/user_controller.dart';
 import 'package:tukio/widgets/user_model.dart';
 
-import 'maps/places_search_map.dart';
+import 'maps/map_view.dart';
 
 class HomePage extends StatefulWidget with NavigationStates {
   static String route = "home";
@@ -184,11 +184,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                PlacesSearchMapSample(keyword)));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MapView()));
                   },
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8),

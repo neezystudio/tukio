@@ -5,11 +5,11 @@
    <application
      android:label="tukio"
      android:icon="@mipmap/launcher_icon">
-     <meta-data android:name="com.google.android.geo.API_KEY" 
-     android:value="{{AIzaSyBYlx-jwVmGxM5ri5EMYkmO2DAwT6kOPV0}}"/>
+     <meta-data android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyBYlx-jwVmGxM5ri5EMYkmO2DAwT6kOPV0"/>
 
         <activity
-            android:name=".MainActivity"
+             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
