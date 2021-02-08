@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tukio/pages/maps/map_view.dart';
 import 'package:tukio/widgets/event_list_card.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
@@ -249,15 +250,139 @@ class _DetailsPageState extends State<DetailsPage>
   String _qrEntryCode = "null";
   @override
   Widget build(BuildContext context) {
+    final levelIndicator = Container(
+      child: Container(
+        child: LinearProgressIndicator(
+          backgroundColor: Color.fromRGBO(209, 224, 224, 0.2),
+        ),
+      ),
+    );
+    final topContentText = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        SizedBox(height: 120.0),
+        Icon(
+          Icons.event_rounded,
+          color: Colors.white,
+          size: 40.0,
+        ),
+        Container(
+          width: 90.0,
+          child: new Divider(color: Colors.green),
+        ),
+        SizedBox(height: 10.0),
+        Text(
+          widget.event.data()['name'],
+          style: TextStyle(color: Colors.white, fontSize: 45.0),
+        ),
+        SizedBox(height: 30.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(flex: 1, child: levelIndicator),
+            Expanded(
+                flex: 6,
+                child: Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      widget.event.data()['start-time'].toDate().toString(),
+                      style: TextStyle(color: Colors.white),
+                    ))),
+            //Expanded(flex: 1, child: coursePrice)
+          ],
+        ),
+      ],
+    );
+
+    final topContent = Stack(
+      children: <Widget>[
+        Container(
+            padding: EdgeInsets.only(left: 10.0),
+            height: MediaQuery.of(context).size.height * 0.5,
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage("assets/images/attendance.jpg"),
+                fit: BoxFit.cover,
+              ),
+            )),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          padding: EdgeInsets.all(40.0),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
+          child: Center(
+            child: topContentText,
+          ),
+        ),
+        Positioned(
+            left: 8.0,
+            top: 60.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back, color: Colors.white),
+                ),
+                SizedBox(
+                  width: 700.0,
+                ),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MapView()));
+                    },
+                    child: Icon(Icons.share_rounded, color: Colors.white))
+              ],
+            ))
+      ],
+    );
+    final bottomContentText = Text(
+      widget.event.data()['description'],
+      style: TextStyle(fontSize: 18.0),
+    );
+    final readButton = Container(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      width: MediaQuery.of(context).size.width,
+      child: RaisedButton(
+        onPressed: () => {},
+        color: Color.fromRGBO(58, 66, 86, 1.0),
+        child: Text("GET GUEST ", style: TextStyle(color: Colors.white)),
+      ),
+    );
+    final bottomContent = Container(
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.all(40.0),
+      child: Center(
+        child: Column(
+          children: <Widget>[bottomContentText, readButton],
+        ),
+      ),
+    );
     return new Scaffold(
-      body: Stack(
+      body: Column(
+        children: <Widget>[
+          topContent,
+          Icon(
+            Icons.event_rounded,
+            color: Colors.white,
+            size: 40.0,
+          ),
+          bottomContent
+        ],
+      ),
+      /* Stack(
         children: <Widget>[
           new Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new Image.network(
-                'https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/images/lake.jpg',
+              new Image.asset(
+                '"assets/images/locations.jpg"',
               ),
               new Padding(
                 padding:
@@ -328,7 +453,7 @@ class _DetailsPageState extends State<DetailsPage>
                 )
               : new Container(),
         ],
-      ),
+      ) */
     );
   }
 }

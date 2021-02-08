@@ -26,11 +26,11 @@ class _CheckInPageState extends State<CheckInPage> {
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          child: Icon(Icons.menu, color: Colors.white),
+          child: Icon(Icons.menu, color: Colors.black),
           onTap: widget.onMenuTap,
         ),
         title: Text("Check In",
-            style: TextStyle(fontSize: 24, color: Colors.white)),
+            style: TextStyle(fontSize: 24, color: Colors.black)),
       ),
       body: new StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

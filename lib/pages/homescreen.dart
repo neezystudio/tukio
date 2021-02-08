@@ -8,6 +8,7 @@ import 'package:tukio/pages/event_tabs/share_event.dart';
 import 'package:tukio/pages/settings.dart';
 import 'package:tukio/widgets/event_list_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:tukio/widgets/locator.dart';
 import 'package:tukio/widgets/user_controller.dart';
 import 'package:tukio/widgets/user_model.dart';
@@ -26,7 +27,7 @@ class HomePage extends StatefulWidget with NavigationStates {
 }
 
 class _HomePageState extends State<HomePage> {
-  UserModel _currentUser = locator.get<UserController>().currentUser;
+  // UserModel _currentUser = locator.get<UserController>().currentUser;
   static String keyword = "Bakery";
 
   void updateKeyWord(String newKeyword) {
