@@ -74,6 +74,8 @@ class _MyAppState extends State<MyApp> {
     })*/
   }
 }
+//let us  have the folowing relesed by the end fir the end week beceacuse we have to see hw that gies //
+//whoever gets t this line if code just nw i was real ;goofy putiing thus down nithing in my nhead just a random comment
 
 var routes = <String, WidgetBuilder>{
   "/auth": (BuildContext context) => AuthScreen(),
