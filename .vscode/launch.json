@@ -7,13 +7,8 @@
         {
             "name": "tukio",
             "request": "launch",
+            "program": "lib/main.dart",
             "type": "dart"
         },
-        {
-            "name": "bug",
-            "cwd": "bug",
-            "request": "launch",
-            "type": "dart"
-        }
     ]
 }

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bug">
+    package="neezystudio.tukio">
    <application
-        android:label="bug"
+        android:label="tukio"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

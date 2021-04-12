@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tukio/pages/maps/map_view.dart';
 import 'package:tukio/widgets/event_list_card.dart';
+import 'package:share/share.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -333,8 +334,8 @@ class _DetailsPageState extends State<DetailsPage>
                 ),
                 InkWell(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => MapView()));
+                      Share.share(
+                          'Please fill out the following form   http://8b3758c30cce.ngrok.io ');
                     },
                     child: Icon(Icons.share_rounded, color: Colors.white))
               ],

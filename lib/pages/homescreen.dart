@@ -9,10 +9,6 @@ import 'package:tukio/pages/settings.dart';
 import 'package:tukio/widgets/event_list_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-import 'package:tukio/widgets/locator.dart';
-import 'package:tukio/widgets/user_controller.dart';
-import 'package:tukio/widgets/user_model.dart';
-
 import 'maps/map_view.dart';
 
 class HomePage extends StatefulWidget with NavigationStates {
