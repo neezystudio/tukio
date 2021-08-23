@@ -1,4 +1,6 @@
 # tukio
+## Preview
+![Preview](https://scontent.fnbo10-1.fna.fbcdn.net/v/t1.6435-9/238032130_2292663454203537_4344965041777946951_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeGCH02IUoDFYueemCZ77itTs1bRQU2XGmqzVtFBTZcaaqjykwpDBgk9DpvOyB7EFaMGe8l3Ej3KwvRrRLGUiqcr&_nc_ohc=QVPNGPrUnE4AX9kOtPC&_nc_pt=5&_nc_ht=scontent.fnbo10-1.fna&oh=c31ff94ac4a22ab692175869c76b0992&oe=614A583E)
 
 shereheapp
 
